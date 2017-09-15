@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>3dPoliticalCompass</title>
+        <title>phunanon's 3-value political compass</title>
         <meta name="viewport" content="width=device-width, initial-scale=0.8">
         <meta charset="UTF-8">
         <script>
@@ -13,8 +13,8 @@ var c, ctx, cw, ch;
 
 function pageLoad ()
 {
-  //Shuffle array
-//    fy(questions);
+  //Shuffle questions
+    fy(questions);
   //Prepare canvas
     c = gE("compass");
     ctx = c.getContext("2d");
