@@ -9,19 +9,21 @@
 var questions = [[0, 1, "Freedom of big business is the best practical way a society can prosper.", 0], [0, 1, "Charity is a better way of helping those in need than social welfare.", 0], [0, -1, "Organisations and corporations cannot be trusted and need regulating by the government.", 0], [0, -1, "A government that provides for everyone is an inherently good idea.", 0], [0, -1, "The welfare system doesn't go far enough towards removing inequality.", 0], [0, 1, "Wages are usually fair, as big business knows best what a worker's labour is worth", 0], [0, 1, "It is human nature to be greedy.", 0], [0, -1, "Land should not be a commodity to be bought and sold.", 0], [0, -1, "All industry and the bank should be nationalised.", 0], [0, 1, "\"Exploitation\" is an outdated term, as the struggles of 1800s capitalism doesn't exist anymore.", 0], [0, 1, "Communism is an ideal that can never work in practice.", 0], [0, 1, "Taxation of the wealthy is a bad idea, society would be better off without it.", 0], [0, 1, "The harder you work, the more you progress up the social ladder.", 0], [0, -1, "Class is the primary division of society.", 0], [0, -1, "Economic inequality is too high in the world.", 0], [1, -1, "The government should be less involved in the day to day life of its citizens.", 0], [1, 1, "Sometimes it is right that the government may spy on its citizens, to combat extremists and terrorists.", 0], [1, 1, "Authority figures, if morally correct, are a good thing for society.", 0], [1, 1, "Strength is necessary for any government to succeed.", 0], [1, 1, "Only the government can fairly and effectively regulate organisations.", 0], [1, -1, "Without democracy a society is nothing.", 0], [1, -1, "Jury Nullification should be legal.", 0], [1, -1, "The smaller the government, the freer the people.", 0], [1, 1, "As things are right now, society requires structure and bureaucracy in order to function.", 0], [1, 1, "Mandatory IDs should be used to ensure public safety.", 0], [1, -1, "The government should only provide emergency services and law enforcement, no more.", 0], [1, 1, "In times of crisis, safety becomes more important than civil liberties.", 0], [1, -1, "The police exist to protect the people, not uphold the status-quo by force.", 0], [1, -1, "State schools are a bad idea, because our state shouldn't be influencing our children.", 0], [1, 1, "If you have nothing to hide, you have nothing to fear.", 0], [2, -1, "Homosexuality is against my values.", 0], [2, -1, "Transgender individuals should not be able to adopt children.", 0], [2, 1, "Two consenting individuals should be able to do whatever they want with each other, even if it makes me uncomfortable.", 0], [2, 1, "An individual’s body is their own property, and should be able to do anything they desire to it.", 0], [2, -1, "Drugs are harmful and should be banned.", 0], [2, -1, "The death penalty should exist for certain crimes.", 0], [2, -1, "Non-violent crimes should still be punished.", 0], [2, -1, "Without religion one can not be moral.", 0], [2, -1, "Parents should hold absolute power over their children, as they are older and more experienced.", 0], [2, 1, "A person should be able to worship whomever or whatever they want.", 0], [2, 1, "Nudism is perfectly natural.", 0], [2, 1, "Animals deserve certain universal rights.", 0], [2, 1, "Gender is a social construct, not a natural state of affairs.", 0], [2, -1, "Multiculturalism is bad.", 0], [2, 1, "Laws based on cultural values, rather than ethical ones, aren’t justice.", 0], [2, 1, "Autonomy of body extends even to minors, the mentally ill and serious criminals.", 0]];
 var r = [0, 0, 0]; //Each value tallied as ratios (eg. 1 econ, 2 auth, 1 prog)
 
-var c, ctx, cw, ch;
+var canvas, ctx, cw, ch;
 
 function pageLoad ()
 {
   //Shuffle questions
     fy(questions);
   //Prepare canvas
-    c = gE("compass");
-    ctx = c.getContext("2d");
+    canvas = gE("compass");
+    ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = false;
     ctx.translate(0.5, 0.5);
-    cw = c.width;
-    ch = c.height;
+    cw = canvas.width;
+    ch = canvas.height;
+  //Prepare download
+    gE("downloadImgLink").setAttribute("download", dateStamp() + "-Pcompass.png");
   //Load questions
     var axis = ["econ", "auth", "prog"];
     var answers = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"];
@@ -123,7 +125,6 @@ function updateCompass ()
     ctx.stroke();
     ctx.fill();
   //Point
-    c = r[2]*v[2];
     p = getPoint(v[0], v[1]);
     var x = p[0], y = p[1];
     
@@ -143,6 +144,7 @@ function updateCompass ()
     ctx.fillStyle = "#44f"; ctx.fillText("prog "+ v[2], x, font * 4);
 }
 
+function dateStamp () { var now = new Date(); var date = [now.getFullYear().toString().substring(2), now.getMonth() + 1, now.getDate()]; for (var i = 1; i < 2; ++i) { if (date[i] < 10) { date[i] = "0" + date[i]; } } return date.join(""); }
 function fy (a,b,c,d) { c=a.length;while(c)b=Math.random()*c--|0,d=a[c],a[c]=a[b],a[b]=d }
 function gE (e) { return document.getElementById(e); }
         </script>
@@ -204,6 +206,11 @@ canvas {
     height: 100%;
 }
 
+button {
+    margin: .5rem;
+    padding: .5rem;
+}
+
 @media (max-width: 40rem) {
     question {
         width: unset;
@@ -222,6 +229,7 @@ canvas {
     </head>
     <body onload="pageLoad()">
         <questions></questions>
+        <a id="downloadImgLink" href="#" target="_blank"><button onclick="gE('downloadImgLink').setAttribute('href', canvas.toDataURL());">Download compass image</button></a>
         <canvas id="compass" width="640" height="640"></canvas>
     </body>
 </html>
