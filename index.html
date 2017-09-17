@@ -155,6 +155,9 @@ function gE (e) { return document.getElementById(e); }
     font-family: sans;
     font-size: 1.2rem;
 }
+body {
+    padding: 1rem;
+}
 
 question {
     display: grid;
@@ -212,6 +215,12 @@ button {
     margin: .5rem;
     padding: .5rem;
 }
+#showCompassBtn {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
 
 @media (max-width: 40rem) {
     question {
@@ -230,8 +239,10 @@ button {
         </style>
     </head>
     <body onload="pageLoad()">
+        <p>Click/tap the compass to hide it.</p>
         <questions></questions>
         <a id="downloadImgLink" href="#" target="_blank"><button onclick="gE('downloadImgLink').setAttribute('href', canvas.toDataURL());">Download compass image</button></a>
-        <canvas id="compass" width="640" height="640"></canvas>
+        <canvas id="compass" width="640" height="640" onclick="canvas.style.display = 'none'; gE('showCompassBtn').style.display = 'block';"></canvas>
+        <button id="showCompassBtn" onclick="canvas.style.display = 'block'; gE('showCompassBtn').style.display = 'none';">Show compass</button>
     </body>
 </html>
