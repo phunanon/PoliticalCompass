@@ -144,8 +144,8 @@ function updateCompass ()
     ctx.fillStyle = "#44f"; ctx.fillText("prog "+ v[2], x, font * 4);
 }
 
-function dateStamp () { var now = new Date(); var date = [now.getFullYear().toString().substring(2), now.getMonth() + 1, now.getDate()]; for (var i = 1; i < 2; ++i) { if (date[i] < 10) { date[i] = "0" + date[i]; } } return date.join(""); }
-function fy (a,b,c,d) { c=a.length;while(c)b=Math.random()*c--|0,d=a[c],a[c]=a[b],a[b]=d }
+function dateStamp () { var now = new Date(); var date = [now.getFullYear().toString().substring(2), now.getMonth() + 1, now.getDate()]; for (var i = 1; i < 3; ++i) { if (date[i] < 10) { date[i] = "0" + date[i]; } } return date.join(""); }
+function fy (a,b,c,d) { c=a.length;while(c)b=Math.random()*c--|0,d=a[c],a[c]=a[b],a[b]=d } //Use case: fy(array)
 function gE (e) { return document.getElementById(e); }
         </script>
         <style>
