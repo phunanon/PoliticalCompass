@@ -49,10 +49,12 @@ function pageLoad ()
 function save (q, a)
 {
     questions[q][3] = -questions[q][1] * (a - 2);
-  //Focus on next
-    var f = gE((q + 1) +'_0');
-    //f.focus();
-    f.scrollIntoView();
+    if (q != questions.length - 1) {
+      //Focus on next
+        var f = gE((q + 1) +'_0');
+        //f.focus();
+        f.scrollIntoView();
+    }
   //Redraw
     updateCompass();
 }
@@ -162,7 +164,7 @@ body {
 question {
     display: grid;
     grid-template-columns: 50% 50%;
-    width: 75vmin;
+    width: 70vmin;
     margin: .5rem;
     padding: .5rem;
     border: .1rem solid #000;
@@ -207,7 +209,7 @@ canvas {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 50vmin;
+    width: 64vmin;
     height: auto;
 }
 
