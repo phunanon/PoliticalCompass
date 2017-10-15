@@ -14,6 +14,9 @@ var canvas, ctx, cw, ch;
 function pageLoad ()
 {
   //Shuffle questions
+    for (q in questions) {
+        questions[q].push(q);
+    }
     fy(questions);
   //Prepare canvas
     canvas = gE("compass");
@@ -32,7 +35,7 @@ function pageLoad ()
       //Tally values
         ++r[questions[q][0]];
       //Display on page
-        var html = '<question class="'+ axis[questions[q][0]] +'"><n>'+ (q+1) +'/'+ qlen +'</n><q>'+ questions[q][2] +'</q><form>';
+        var html = '<question class="'+ axis[questions[q][0]] +'"><n>'+ (q+1) +'/'+ qlen +' #'+ questions[q][4] +'</n><q>'+ questions[q][2] +'</q><form>';
         for (var s = 0; s < 5; ++s) {
             html += '<input onchange="save('+ q +', '+ s +')" name="q'+ q +'" type="radio" id="'+ q +'_'+ s +'"'+ (s == 2 ? ' checked' : '') +'><label for="'+ q +'_'+ s +'">'+ answers[s] +'</label>';
         }
