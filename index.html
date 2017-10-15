@@ -315,9 +315,9 @@ canvas {
         <p><input type="checkbox" onchange="autoNext = !autoNext;" autocomplete="off" checked> Auto next</p>
         <p><input type="checkbox" onchange="incQs = !incQs; updateCompass();" autocomplete="off" checked> Include individual questions in chart</p>
         <questions></questions>
-        <canvas id="compass" title="Click to hide compass" width="640" height="640" onclick="canvas.style.display = 'none'; gE('showCompassBtn').style.display = 'block';"></canvas>
+        <canvas id="compass" title="Click to hide compass" width="640" height="640" onclick="canvas.style.display = 'none'; gE('showCompassBtn').style.display = 'block'; gE('downloadCompassLink').style.display = 'none';"></canvas>
         <div id="compassButtons">
-            <button id="showCompassBtn" onclick="canvas.style.display = 'block'; gE('showCompassBtn').style.display = 'none';">Show compass</button>
+            <button id="showCompassBtn" onclick="canvas.style.display = 'block'; gE('showCompassBtn').style.display = 'none'; gE('downloadCompassLink').style.display = 'block';">Show compass</button>
             <a id="downloadCompassLink" href="#" target="_blank"><button onclick="gE('downloadCompassLink').setAttribute('href', canvas.toDataURL());">Download compass image</button></a>
         </div>
     </body>
