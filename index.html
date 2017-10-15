@@ -6,18 +6,25 @@
         <meta charset="UTF-8">
         <script>
 //Copied from http://www.sapplycompass.com/
-var questions = [[0, 1, "Freedom of big business is the <b>best</b> practical way a society can prosper.", 0], [0, 1, "Charity is a <b>better</b> way of helping those in need than social welfare.", 0], [0, -1, "Organisations and corporations <b>cannot</b> be trusted and need regulating by a government.", 0], [0, -1, "A government that provides for everyone is an inherently <b>good</b> idea.", 0], [0, -1, "The welfare system does <b>not</b> go far enough towards removing inequality.", 0], [0, 1, "Wages <b>are</b> usually fair, as big business knows best what a worker's labour is worth", 0], [0, 1, "It <b>is</b> human nature to be greedy.", 0], [0, -1, "Land should <b>not</b> be a commodity to be bought and sold.", 0], [0, -1, "All industry and banks <b>should</b> be nationalised.", 0], [0, 1, "\"Exploitation\" is an <b>outdated</b> term, as the struggles of 1800s capitalism do not exist anymore.", 0], [0, 1, "Communism is an ideal that can <b>never</b> work in practice.", 0], [0, 1, "Taxation of the wealthy is a <b>bad</b> idea, society would be better off without it.", 0], [0, 1, "Child labour <b>should</b> be legal, as they are entitled to work for a wage.", 0], [0, -1, "Class is a <b>primary</b> division of society.", 0], [0, -1, "Economic inequality is <b>too high</b> in the world.", 0], [1, -1, "The government should be <b>less</b> involved in the day to day life of its citizens.", 0], [1, 1, "It is <b>right</b> that a government may spy on its citizens, to combat extremists and terrorists.", 0], [1, 1, "Authority figures, if morally correct, are a <b>good</b> thing for society.", 0], [1, 1, "Strength is <b>necessary</b> for any government to succeed.", 0], [1, 1, "<b>Only</b> a government can fairly and effectively regulate organisations.", 0], [1, -1, "<b>Without</b> democracy a society is nothing.", 0], [1, -1, "Jury Nullification <b>should</b> be legal.", 0], [1, -1, "The <b>smaller</b> a government, the freer people are.", 0], [1, 1, "As things are right now, society <b>requires</b> structure and bureaucracy in order to function best.", 0], [1, 1, "Mandatory IDs <b>should</b> be used to ensure public safety.", 0], [1, -1, "A government should <b>only</b> provide, at most, emergency services and law enforcement.", 0], [1, 1, "In times of crisis, safety becomes <b>more</b> important than civil liberties.", 0], [1, -1, "Police should exist to protect the people, <b>not</b> uphold the status-quo by force.", 0], [1, -1, "State schools are a <b>bad</b> idea, because our state shouldn't be influencing our children.", 0], [1, 1, "If you have nothing to hide, you have nothing to fear.", 0], [2, -1, "Homosexuality is <b>against</b> my values.", 0], [2, -1, "Transgender individuals should <b>not</b> be able to adopt children.", 0], [2, 1, "Two consenting individuals <b>should</b> be able to do whatever they want with each other, even if it makes me uncomfortable.", 0], [2, 1, "An individual’s body <b>is</b> their own property, and should be able to do anything they desire to it.", 0], [2, -1, "Drugs are harmful and <b>should</b> be banned.", 0], [2, -1, "The death penalty <b>should</b> exist for certain crimes.", 0], [2, -1, "Non-violent crimes <b>should</b> still be punished.", 0], [2, -1, "Without religion one <b>cannot</b> be moral.", 0], [2, -1, "Parents <b>should</b> hold absolute power over their children, as they are older and more experienced.", 0], [2, 1, "A person <b>should</b> be able to worship whomever or whatever they want.", 0], [2, 1, "Nudism <b>is</b> perfectly natural.", 0], [2, 1, "Animals <b>deserve</b> certain universal rights.", 0], [2, 1, "Gender is a social construct, <b>not</b> a natural state of affairs.", 0], [2, -1, "Multiculturalism is <b>bad</b>.", 0], [2, 1, "Laws based on cultural values, rather than ethical ones, are <b>not</b> justice.", 0], [2, 1, "Autonomy of body extends <b>even</b> to minors, the mentally ill and serious criminals.", 0]];
+var Qs = [[0, 1, "Freedom of big business is the <b>best</b> practical way a society can prosper.", 0], [0, 1, "Charity is a <b>better</b> way of helping those in need than social welfare.", 0], [0, -1, "Organisations and corporations <b>cannot</b> be trusted and need regulating by a government.", 0], [0, -1, "A government that provides for everyone is an inherently <b>good</b> idea.", 0], [0, -1, "The welfare system does <b>not</b> go far enough towards removing inequality.", 0], [0, 1, "Wages <b>are</b> usually fair, as big business knows best what a worker's labour is worth", 0], [0, 1, "It <b>is</b> human nature to be greedy.", 0], [0, -1, "Land should <b>not</b> be a commodity to be bought and sold.", 0], [0, -1, "All industry and banks <b>should</b> be nationalised.", 0], [0, 1, "\"Exploitation\" is an <b>outdated</b> term, as the struggles of 1800s capitalism do not exist anymore.", 0], [0, 1, "Communism is an ideal that can <b>never</b> work in practice.", 0], [0, 1, "Taxation of the wealthy is a <b>bad</b> idea, society would be better off without it.", 0], [0, 1, "Child labour <b>should</b> be legal, as they are entitled to work for a wage.", 0], [0, -1, "Class is a <b>primary</b> division of society.", 0], [0, -1, "Economic inequality is <b>too high</b> in the world.", 0], [1, -1, "The government should be <b>less</b> involved in the day to day life of its citizens.", 0], [1, 1, "It is <b>right</b> that a government may spy on its citizens, to combat extremists and terrorists.", 0], [1, 1, "Authority figures, if morally correct, are a <b>good</b> thing for society.", 0], [1, 1, "Strength is <b>necessary</b> for any government to succeed.", 0], [1, 1, "<b>Only</b> a government can fairly and effectively regulate organisations.", 0], [1, -1, "<b>Without</b> democracy a society is nothing.", 0], [1, -1, "Jury Nullification <b>should</b> be legal.", 0], [1, -1, "The <b>smaller</b> a government, the freer people.", 0], [1, 1, "As things are right now, society <b>requires</b> structure and bureaucracy in order to function best.", 0], [1, 1, "Mandatory IDs <b>should</b> be used to ensure public safety.", 0], [1, -1, "A government should <b>only</b> provide, at most, emergency services and law enforcement.", 0], [1, 1, "In times of crisis, safety becomes <b>more</b> important than civil liberties.", 0], [1, -1, "Police should exist to protect the people, <b>not</b> uphold the status-quo by force.", 0], [1, -1, "State schools are a <b>bad</b> idea, because our state shouldn't be influencing our children.", 0], [1, 1, "If you have nothing to hide, you have nothing to fear.", 0], [2, -1, "Homosexuality is <b>against</b> my values.", 0], [2, -1, "Transgender individuals should <b>not</b> be able to adopt children.", 0], [2, 1, "Two consenting individuals <b>should</b> be able to do whatever they want with each other, even if it makes me uncomfortable.", 0], [2, 1, "An individual’s body <b>is</b> their own property, and should be able to do anything they desire to it.", 0], [2, -1, "Drugs are harmful and <b>should</b> be banned.", 0], [2, -1, "The death penalty <b>should</b> exist for certain crimes.", 0], [2, -1, "Non-violent crimes <b>should</b> still be punished.", 0], [2, -1, "Without religion one <b>cannot</b> be moral.", 0], [2, -1, "Parents <b>should</b> hold absolute power over their children, as they are older and more experienced.", 0], [2, 1, "A person <b>should</b> be able to worship whomever or whatever they want.", 0], [2, 1, "Nudism <b>is</b> perfectly natural.", 0], [2, 1, "Animals <b>deserve</b> certain universal rights.", 0], [2, 1, "Gender is a social construct, <b>not</b> a natural state of affairs.", 0], [2, -1, "Multiculturalism is <b>bad</b>.", 0], [2, 1, "Laws based on cultural values, rather than ethical ones, are <b>not</b> justice.", 0], [2, 1, "Autonomy of body extends <b>even</b> to minors, the mentally ill and serious criminals.", 0]];
+var randQs = []; //Table of questions indexes randomised in order
+var unrandQs = []; //Same as above, but not randomised
+var selQs = []; //Table either set to randQs or unrandQs, based on user preference
 var r = [0, 0, 0]; //Each value tallied as ratios (eg. 1 econ, 2 auth, 1 prog)
+var randomiseQs = true;
 
 var canvas, ctx, cw, ch;
 
 function pageLoad ()
 {
-  //Shuffle questions
-    for (q in questions) {
-        questions[q].push(q);
+  //Shuffle questions into randQs, and add ID's
+    for (q in Qs) {
+        randQs.push(q)
+        Qs[q].push(q); //Add ID onto questions
     }
-    fy(questions);
+    unrandQs = copyArray(randQs);
+    fy(randQs);
+    selQs = randQs;
   //Prepare canvas
     canvas = gE("compass");
     ctx = canvas.getContext("2d");
@@ -28,31 +35,16 @@ function pageLoad ()
   //Prepare download
     gE("downloadImgLink").setAttribute("download", dateStamp() + "-Pcompass.png");
   //Load questions
-    var axis = ["econ", "auth", "prog"];
-    var answers = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"];
-    qbox = document.getElementsByTagName("questions")[0];
-    for (var q = 0, qlen = questions.length; q < qlen; ++q) {
-      //Tally values
-        ++r[questions[q][0]];
-      //Display on page
-        var html = '<question class="'+ axis[questions[q][0]] +'"><n>'+ (q+1) +'/'+ qlen +' #'+ questions[q][4] +'</n><q>'+ questions[q][2] +'</q><form>';
-        for (var s = 0; s < 5; ++s) {
-            html += '<input onchange="save('+ q +', '+ s +')" name="q'+ q +'" type="radio" id="'+ q +'_'+ s +'"'+ (s == 2 ? ' checked' : '') +'><label for="'+ q +'_'+ s +'">'+ answers[s] +'</label>';
-        }
-        html += '</form></question>';
-        qbox.innerHTML += html;
-    }
-    r[0] = (cw/r[0]) / 4;
-    r[1] = (ch/r[1]) / 4;
-    r[2] = (255/r[2]);
+    updateQuestions();
   //Begin draw
     updateCompass();
 }
 
 function save (q, a)
 {
-    questions[q][3] = -questions[q][1] * (a - 2);
-    if (q != questions.length - 1) {
+    var qu = Qs[selQs[q]];
+    qu[3] = -qu[1] * (a - 2);
+    if (q != Qs.length - 1) {
       //Focus on next
         var f = gE((q + 1) +'_0');
         //f.focus();
@@ -67,16 +59,40 @@ function getPoint (x, y)
     return [cw/2 + r[0]*x, ch/2 - r[1]*y];
 }
 
-var font = 32;
+function updateQuestions ()
+{
+    var axis = ["econ", "auth", "prog"];
+    var answers = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"];
+    qbox = document.getElementsByTagName("questions")[0];
+    qbox.innerHTML = "";
+    for (var q = 0, qlen = Qs.length; q < qlen; ++q) {
+        var qu = Qs[selQs[q]]; //Save question data array, as selected from random table
+      //Tally values
+        ++r[qu[0]];
+      //Display on page
+        var html = '<question class="'+ axis[qu[0]] +'"><n>'+ (q+1) +'/'+ qlen +' #'+ qu[4] +'</n><q>'+ qu[2] +'</q><form>';
+        for (var s = 0; s < 5; ++s) {
+            html += '<input onchange="save('+ q +', '+ s +')" name="q'+ q +'" type="radio" id="'+ q +'_'+ s +'"'+ (s == 2 ? ' checked' : '') +'><label for="'+ q +'_'+ s +'">'+ answers[s] +'</label>';
+        }
+        html += '</form></question>';
+        qbox.innerHTML += html;
+    }
+    r[0] = (cw/r[0]) / 4;
+    r[1] = (ch/r[1]) / 4;
+    r[2] = (255/r[2]);
+}
+
+var font = 32, sfont = 10;
 function updateCompass ()
 {
   //Recount question values
     var v = [0, 0, 0]; //econ, auth, prog
     var w = [0, 0, 0, 0, 0, 0]; //+econ, +auth, +prog, -econ, -auth, -prog
-    for (var q = 0, qlen = questions.length; q < qlen; ++q) {
-        a = questions[q][3];
-        v[questions[q][0]] += a;
-        w[questions[q][0] + (a > 0 ? 0 : 3)] += Math.abs(a);
+    for (q in Qs) {
+        var qu = Qs[selQs[q]];
+        a = qu[3];
+        v[qu[0]] += a;
+        w[qu[0] + (a > 0 ? 0 : 3)] += Math.abs(a);
     }
   //Clear
     ctx.fillStyle = "#fff";
@@ -141,14 +157,36 @@ function updateCompass ()
     ctx.stroke();
     ctx.fill();
     ctx.lineWidth = 1;
-  //Text
+  //Values text
+    var Y = font * 1.5;
     ctx.font = font +"px mono";
-    x = (v[0] > 0 ? font : cw - font * 6);
-    ctx.fillStyle = "#4b4"; ctx.fillText("econ "+ v[0], x, font * 2);
-    ctx.fillStyle = "#e44"; ctx.fillText("auth "+ v[1], x, font * 3);
-    ctx.fillStyle = "#44f"; ctx.fillText("prog "+ v[2], x, font * 4);
+    var X = (v[0] > 0 ? font : cw - font * 6);
+    x = X + font;
+    ctx.fillStyle = "#4b4"; ctx.fillText("econ "+ v[0], x, Y + font*0);
+    ctx.fillStyle = "#e44"; ctx.fillText("auth "+ v[1], x, Y + font*1);
+    ctx.fillStyle = "#44f"; ctx.fillText("prog "+ v[2], x, Y + font*2);
+    Y = Y + font*3;
+  //Individual answers text
+    ctx.font = sfont +"px mono";
+    ctx.fillStyle = "#444";
+    for (q in Qs) {
+        var qu = Qs[q];
+        var tx = stripTags(qu[2]);
+        if (tx.length > 24) { tx = tx.substr(0, 21) +'...'; }
+        var an = qu[3];
+        if (an >= 0) { an = '+'+ an; }
+        var id = qu[4];
+        if (id.length < 2) { id = id +' '; }
+        qu = an +' #'+ id +' '+ tx;
+        var y = Y + sfont * q;
+        if (y > ch/2 - sfont/2) { y += sfont; }
+        ctx.fillText(qu, X, y);
+    }
 }
 
+
+function copyArray (arr) { var ret = []; for (var i = 0, ilen = arr.length; i < ilen; ++i) { ret.push(arr[i]); } return ret; }
+function stripTags (html) { var div = document.createElement("div"); div.innerHTML = html; return div.innerText; }
 function dateStamp () { var now = new Date(); var date = [now.getFullYear().toString().substring(2), now.getMonth() + 1, now.getDate()]; for (var i = 1; i < 3; ++i) { if (date[i] < 10) { date[i] = "0" + date[i]; } } return date.join(""); }
 function fy (a,b,c,d) { c=a.length;while(c)b=Math.random()*c--|0,d=a[c],a[c]=a[b],a[b]=d } //Use case: fy(array)
 function gE (e) { return document.getElementById(e); }
@@ -208,6 +246,14 @@ question n {
     color: rgba(0, 0, 0, .1);
 }
 
+p {
+    margin: .5rem;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+}
+
 canvas {
     position: fixed;
     bottom: 0;
@@ -244,7 +290,9 @@ button {
         </style>
     </head>
     <body onload="pageLoad()">
-        <p>Click/tap the compass to hide it.</p>
+        <p>In this quiz, a 'government' is seen as a democratic institution.</p>
+        <p><i>Click/tap the compass to hide it.</i></p>
+        <p><input id="randomiseQs" type="checkbox" onchange="selQs = ((randomiseQs = !randomiseQs) ? randQs : unrandQs); updateQuestions();" autocomplete="off" checked> Randomise question order</p>
         <questions></questions>
         <a id="downloadImgLink" href="#" target="_blank"><button onclick="gE('downloadImgLink').setAttribute('href', canvas.toDataURL());">Download compass image</button></a>
         <canvas id="compass" width="640" height="640" onclick="canvas.style.display = 'none'; gE('showCompassBtn').style.display = 'block';"></canvas>
