@@ -33,7 +33,7 @@ function pageLoad ()
     cw = canvas.width;
     ch = canvas.height;
   //Prepare download
-    gE("downloadImgLink").setAttribute("download", dateStamp() + "-Pcompass.png");
+    gE("downloadCompassLink").setAttribute("download", dateStamp() + "-Pcompass.png");
   //Load questions
     updateQuestions();
   //Begin draw
@@ -84,6 +84,7 @@ function updateQuestions ()
 }
 
 var font = 32, sfont = 10;
+var incQs = true;
 function updateCompass ()
 {
   //Recount question values
@@ -169,24 +170,27 @@ function updateCompass ()
     Y = Y + font*3;
   //Individual answers text
     ctx.font = sfont +"px mono";
-    ctx.fillStyle = "#444";
-    for (q in Qs) {
-        var qu = Qs[q];
-        var tx = stripTags(qu[2]);
-        if (tx.length > 24) { tx = tx.substr(0, 21) +'...'; }
-        var an = qu[3];
-        if (an >= 0) { an = '+'+ an; }
-        var id = qu[4];
-        if (id.length < 2) { id = id +' '; }
-        qu = an +' #'+ id +' '+ tx;
-        var y = Y + sfont * q;
-        if (y > ch/2 - sfont/2) { y += sfont; }
-        ctx.fillText(qu, X, y);
+    if (incQs) {
+        ctx.fillStyle = "#444";
+        for (q in Qs) {
+            var qu = Qs[q];
+            var tx = stripTags(qu[2]);
+            if (tx.length > 24) { tx = tx.substr(0, 21) +'...'; }
+            var an = qu[3];
+            if (an >= 0) { an = '+'+ an; }
+            var id = qu[4];
+            if (id.length < 2) { id = id +' '; }
+            qu = an +' #'+ id +' '+ tx;
+            var y = Y + sfont * q;
+            if (y > ch/2 - sfont/2) { y += sfont; }
+            ctx.fillText(qu, X, y);
+        }
     }
   //URL
     ctx.fillStyle = "#448";
-    ctx.fillText("phunanon.github.io/", X, ch - sfont - 10);
-    ctx.fillText("PoliticalCompass/", X, ch - sfont);
+    x = X + font;
+    ctx.fillText("phunanon.github.io/", x, ch - sfont - 10);
+    ctx.fillText("PoliticalCompass/", x, ch - sfont);
 }
 
 
@@ -205,6 +209,14 @@ function gE (e) { return document.getElementById(e); }
 }
 body {
     padding: 1rem;
+}
+button {
+    margin: .5rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+p {
+    margin: .5rem;
 }
 
 question {
@@ -251,10 +263,6 @@ question n {
     color: rgba(0, 0, 0, .1);
 }
 
-p {
-    margin: .5rem;
-}
-
 input[type=checkbox] {
   transform: scale(1.5);
 }
@@ -265,17 +273,22 @@ canvas {
     right: 0;
     width: 64vmin;
     height: auto;
+    cursor: pointer;
 }
 
-button {
-    margin: .5rem;
-    padding: .5rem;
-}
-#showCompassBtn {
-    display: none;
+#compassButtons {
     position: fixed;
     bottom: 0;
     right: 0;
+}
+#showCompassBtn {
+    display: none;
+}
+#downloadCompassLink {
+    opacity: .25;
+}
+#downloadCompassLink:hover {
+    opacity: 1;
 }
 
 @media (max-width: 40rem) {
@@ -295,13 +308,17 @@ button {
         </style>
     </head>
     <body onload="pageLoad()">
-        <p>In this quiz, a 'government' is seen as a democratic institution.</p>
+        <h1>phunanon's 3-value political compass</h1>
+        <p>Note: In this quiz, a 'government' is seen as a democratic institution.</p>
         <p><i>Click/tap the compass to hide it.</i></p>
         <p><input type="checkbox" onchange="selQs = ((randomiseQs = !randomiseQs) ? randQs : unrandQs); updateQuestions();" autocomplete="off" checked> Randomise question order</p>
-        <p><input type="checkbox" onchange="autoNext = !autoNext;" checked> Auto next</p>
+        <p><input type="checkbox" onchange="autoNext = !autoNext;" autocomplete="off" checked> Auto next</p>
+        <p><input type="checkbox" onchange="incQs = !incQs; updateCompass();" autocomplete="off" checked> Include individual questions in chart</p>
         <questions></questions>
-        <a id="downloadImgLink" href="#" target="_blank"><button onclick="gE('downloadImgLink').setAttribute('href', canvas.toDataURL());">Download compass image</button></a>
-        <canvas id="compass" width="640" height="640" onclick="canvas.style.display = 'none'; gE('showCompassBtn').style.display = 'block';"></canvas>
-        <button id="showCompassBtn" onclick="canvas.style.display = 'block'; gE('showCompassBtn').style.display = 'none';">Show compass</button>
+        <canvas id="compass" title="Click to hide compass" width="640" height="640" onclick="canvas.style.display = 'none'; gE('showCompassBtn').style.display = 'block';"></canvas>
+        <div id="compassButtons">
+            <button id="showCompassBtn" onclick="canvas.style.display = 'block'; gE('showCompassBtn').style.display = 'none';">Show compass</button>
+            <a id="downloadCompassLink" href="#" target="_blank"><button onclick="gE('downloadCompassLink').setAttribute('href', canvas.toDataURL());">Download compass image</button></a>
+        </div>
     </body>
 </html>
