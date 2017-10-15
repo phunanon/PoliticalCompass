@@ -40,11 +40,12 @@ function pageLoad ()
     updateCompass();
 }
 
+var autoNext = true;
 function save (q, a)
 {
     var qu = Qs[selQs[q]];
     qu[3] = -qu[1] * (a - 2);
-    if (q != Qs.length - 1) {
+    if (q != Qs.length - 1 && autoNext) {
       //Focus on next
         var f = gE((q + 1) +'_0');
         //f.focus();
@@ -292,7 +293,8 @@ button {
     <body onload="pageLoad()">
         <p>In this quiz, a 'government' is seen as a democratic institution.</p>
         <p><i>Click/tap the compass to hide it.</i></p>
-        <p><input id="randomiseQs" type="checkbox" onchange="selQs = ((randomiseQs = !randomiseQs) ? randQs : unrandQs); updateQuestions();" autocomplete="off" checked> Randomise question order</p>
+        <p><input type="checkbox" onchange="selQs = ((randomiseQs = !randomiseQs) ? randQs : unrandQs); updateQuestions();" autocomplete="off" checked> Randomise question order</p>
+        <p><input type="checkbox" onchange="autoNext = !autoNext;" checked> Auto next</p>
         <questions></questions>
         <a id="downloadImgLink" href="#" target="_blank"><button onclick="gE('downloadImgLink').setAttribute('href', canvas.toDataURL());">Download compass image</button></a>
         <canvas id="compass" width="640" height="640" onclick="canvas.style.display = 'none'; gE('showCompassBtn').style.display = 'block';"></canvas>
