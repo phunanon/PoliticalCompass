@@ -73,7 +73,7 @@ function updateQuestions ()
       //Display on page
         var html = '<question class="'+ axis[qu[0]] +'"><n>'+ (q+1) +'/'+ qlen +' #'+ qu[4] +'</n><q>'+ qu[2] +'</q><form>';
         for (var s = 0; s < 5; ++s) {
-            html += '<input onchange="save('+ q +', '+ s +')" name="q'+ q +'" type="radio" id="'+ q +'_'+ s +'"'+ (s == 2 ? ' checked' : '') +'><label for="'+ q +'_'+ s +'">'+ answers[s] +'</label>';
+            html += '<input onchange="save('+ q +', '+ s +')" name="q'+ q +'" type="radio" id="'+ q +'_'+ s +'"'+ (s - 2 == qu[3] ? ' checked' : '') +'><label for="'+ q +'_'+ s +'">'+ answers[s] +'</label>';
         }
         html += '</form></question>';
         qbox.innerHTML += html;
@@ -188,9 +188,8 @@ function updateCompass ()
     }
   //URL
     ctx.fillStyle = "#448";
-    x = X + font;
-    ctx.fillText("phunanon.github.io/", x, ch - sfont - 10);
-    ctx.fillText("PoliticalCompass/", x, ch - sfont);
+    ctx.fillText("phunanon.github.io/", X, ch - sfont - 10);
+    ctx.fillText("PoliticalCompass/", X, ch - sfont);
 }
 
 
