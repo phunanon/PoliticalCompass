@@ -12,6 +12,7 @@ var unrandQs = []; //Same as above, but not randomised
 var selQs = []; //Table either set to randQs or unrandQs, based on user preference
 var r = [0, 0, 0]; //Each value tallied as ratios (eg. 1 econ, 2 auth, 1 prog)
 var randomiseQs = true;
+var showTopics = true;
 
 var canvas, ctx, cw, ch;
 
@@ -71,7 +72,7 @@ function updateQuestions ()
       //Tally values
         ++r[qu[0]];
       //Display on page
-        var html = '<question class="'+ axis[qu[0]] +'"><n>'+ (q+1) +'/'+ qlen +' #'+ qu[4] +'</n><q>'+ qu[2] +'</q><form>';
+        var html = '<question class="'+ (showTopics ? axis[qu[0]] : "neut") +'"><n>'+ (q+1) +'/'+ qlen +' #'+ qu[4] +'</n><q>'+ qu[2] +'</q><form>';
         for (var s = 0; s < 5; ++s) {
             html += '<input onchange="save('+ q +', '+ s +')" name="q'+ q +'" type="radio" id="'+ q +'_'+ s +'"'+ (s - 2 == qu[3] ? ' checked' : '') +'><label for="'+ q +'_'+ s +'">'+ answers[s] +'</label>';
         }
@@ -231,6 +232,7 @@ question {
 question.econ { background-color: #8f8; }
 question.auth { background-color: #f88; }
 question.prog { background-color: #99f; }
+question.neut { background-color: #bbb; }
 question q {
     display: block;
     margin: 1rem;
@@ -311,6 +313,7 @@ canvas {
         <p>Note: In this quiz, a 'government' is seen as a democratic institution.</p>
         <p><i>Click/tap the compass to hide it.</i></p>
         <p><input type="checkbox" onchange="selQs = ((randomiseQs = !randomiseQs) ? randQs : unrandQs); updateQuestions();" autocomplete="off" checked> Randomise question order</p>
+        <p><input type="checkbox" onchange="showTopics = !showTopics; updateQuestions();" autocomplete="off" checked> Indicate question topic</p>
         <p><input type="checkbox" onchange="autoNext = !autoNext;" autocomplete="off" checked> Auto next</p>
         <p><input type="checkbox" onchange="incQs = !incQs; updateCompass();" autocomplete="off" checked> Include individual questions in chart</p>
         <questions></questions>
